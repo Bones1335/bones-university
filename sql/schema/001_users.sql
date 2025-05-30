@@ -8,7 +8,7 @@ CREATE TABLE users (
     username TEXT UNIQUE NOT NULL,
     personal_email TEXT UNIQUE NOT NULL,
     university_email TEXT UNIQUE NOT NULL,
-    isAdmin BOOLEAN NOT NULL,
+    isAdmin BOOLEAN NOT NULL DEFAULT FALSE,
     password TEXT NOT NULL DEFAULT 'unset'
 );
 

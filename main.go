@@ -1,13 +1,38 @@
 package main
 
 import (
+	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
+
+	"github.com/Bones1335/bones-university/internal/database"
+	_ "github.com/lib/pq"
 )
 
+type apiConfig struct {
+	db *database.Queries
+}
+
 func main() {
+	os.Setenv("DB_URL", "postgres://postgres:postgres@localhost:5432/bones_university?sslmode=disable")
+
+	dbURL := os.Getenv("DB_URL")
+
 	const filepathRoot = "."
 	const port = "8080"
+
+	db, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		fmt.Printf("Error connecting to DB: %v\n", err)
+	}
+
+	dbQueries := database.New(db)
+
+	apiCfg := apiConfig{
+		db: dbQueries,
+	}
 
 	mux := http.NewServeMux()
 
@@ -15,6 +40,9 @@ func main() {
 	mux.Handle("/app/", fsHandler)
 
 	mux.HandleFunc("/", handlerGetIndex)
+
+	// mux.HandleFunc("/api/login", apiCfg.handlerLogin)
+	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 
 	srv := &http.Server{
 		Addr:    ":" + port,
