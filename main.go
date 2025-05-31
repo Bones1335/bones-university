@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/Bones1335/bones-university/internal/database"
+	"github.com/Bones1335/bones-university/internal/env"
 	_ "github.com/lib/pq"
 )
 
@@ -16,7 +17,7 @@ type apiConfig struct {
 }
 
 func main() {
-	os.Setenv("DB_URL", "postgres://postgres:postgres@localhost:5432/bones_university?sslmode=disable")
+	env.SetEnv(".env")
 
 	dbURL := os.Getenv("DB_URL")
 
