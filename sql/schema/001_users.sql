@@ -8,6 +8,7 @@ CREATE TABLE users (
     username TEXT UNIQUE NOT NULL,
     personal_email TEXT UNIQUE NOT NULL,
     university_email TEXT UNIQUE NOT NULL,
+    isStudent BOOLEAN NOT NULL DEFAULT FALSE,
     isAdmin BOOLEAN NOT NULL DEFAULT FALSE,
     password TEXT NOT NULL DEFAULT 'unset'
 );
