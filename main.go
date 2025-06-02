@@ -41,6 +41,7 @@ func main() {
 	mux.Handle("/app/", fsHandler)
 
 	mux.HandleFunc("/", handlerGetIndex)
+	mux.HandleFunc("/enrollment", handlerCreateEnrollment)
 
 	// mux.HandleFunc("/api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
