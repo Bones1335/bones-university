@@ -37,8 +37,8 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	fsHandler := http.StripPrefix("/app", http.FileServer(http.Dir(filepathRoot+"/templates")))
-	mux.Handle("/app/", fsHandler)
+	fsHandler := http.StripPrefix("/static", http.FileServer(http.Dir(filepathRoot+"/static")))
+	mux.Handle("/static/", fsHandler)
 
 	mux.HandleFunc("/", handlerGetIndex)
 	mux.HandleFunc("/enrollment", handlerCreateEnrollment)
