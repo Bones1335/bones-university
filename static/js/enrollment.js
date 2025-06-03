@@ -1,8 +1,3 @@
-const enroll = document.getElementById("enrollment");
-enroll.addEventListener("click", () => {
-    location.href = "/enrollment";
-});
-
 const submitEnrollment = document.getElementById("submitEnrollment");
 submitEnrollment.addEventListener("click", () => {
     let form = document.getElementById("enrollmentForm");

@@ -6,10 +6,10 @@
 	</nav>
 	<h1>Welcome to Bones University</h1>
 
-	<script>
-		const enroll = document.getElementById("enrollment");
-		enroll.addEventListener("click", () => {
-			location.href = "/enrollment";
-		})
-	</script>
+
+
 {{end}}
+
+{{ define "script" }}
+	<script src="/static/js/index.js"></script>
+{{ end }}
