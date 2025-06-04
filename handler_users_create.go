@@ -64,10 +64,13 @@ func (cfg *apiConfig) handlerCreateUsers(w http.ResponseWriter, r *http.Request)
 }
 
 func generateUsername(first, last string) string {
-	beg := first[:0]
-	end := last[:5]
+	fLow := strings.ToLower(first)
+	lLow := strings.ToLower(last)
 
-	return fmt.Sprintf("%s%s", beg, end)
+	beg := fLow[0]
+	end := lLow[:5]
+
+	return fmt.Sprintf("%s%s", string(beg), end)
 }
 
 func generateUniEmail(first, last string) string {
