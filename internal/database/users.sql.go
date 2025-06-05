@@ -19,6 +19,7 @@ INSERT INTO users (
     username,
     personal_email,
 	university_email,
+    isStudent,
 	isAdmin,
     password
 )
@@ -32,9 +33,10 @@ Values (
     $4,
     $5,
 	$6,
-	$7
+	$7,
+    $8
 )
-RETURNING id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, isadmin, password
+RETURNING id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, isstudent, isadmin, password
 `
 
 type CreateUserParams struct {
@@ -43,6 +45,7 @@ type CreateUserParams struct {
 	Username        string `json:"username"`
 	PersonalEmail   string `json:"personal_email"`
 	UniversityEmail string `json:"university_email"`
+	Isstudent       bool   `json:"isstudent"`
 	Isadmin         bool   `json:"isadmin"`
 	Password        string `json:"password"`
 }
@@ -54,6 +57,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		arg.Username,
 		arg.PersonalEmail,
 		arg.UniversityEmail,
+		arg.Isstudent,
 		arg.Isadmin,
 		arg.Password,
 	)
@@ -67,6 +71,31 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		&i.Username,
 		&i.PersonalEmail,
 		&i.UniversityEmail,
+		&i.Isstudent,
+		&i.Isadmin,
+		&i.Password,
+	)
+	return i, err
+}
+
+const login = `-- name: Login :one
+SELECT id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, isstudent, isadmin, password FROM users
+WHERE username = $1
+`
+
+func (q *Queries) Login(ctx context.Context, username string) (User, error) {
+	row := q.db.QueryRowContext(ctx, login, username)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.LastName,
+		&i.FirstName,
+		&i.Username,
+		&i.PersonalEmail,
+		&i.UniversityEmail,
+		&i.Isstudent,
 		&i.Isadmin,
 		&i.Password,
 	)

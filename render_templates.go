@@ -33,3 +33,17 @@ func handlerCreateEnrollment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func handlerLogin(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseFiles("templates/layout.html", "templates/login.html")
+	if err != nil {
+		fmt.Printf("error parsing html templates: %v", err)
+		return
+	}
+
+	err = temp.Execute(w, temp)
+	if err != nil {
+		fmt.Printf("problem executing template data: %v", err)
+		return
+	}
+}

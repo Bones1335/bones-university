@@ -13,13 +13,15 @@ import (
 )
 
 type apiConfig struct {
-	db *database.Queries
+	db        *database.Queries
+	jwtSecret string
 }
 
 func main() {
 	env.SetEnv(".env")
 
 	dbURL := os.Getenv("DB_URL")
+	jwtSecret := os.Getenv("JWT_SECRET")
 
 	const filepathRoot = "."
 	const port = "8080"
@@ -32,7 +34,8 @@ func main() {
 	dbQueries := database.New(db)
 
 	apiCfg := apiConfig{
-		db: dbQueries,
+		db:        dbQueries,
+		jwtSecret: jwtSecret,
 	}
 
 	mux := http.NewServeMux()
@@ -40,10 +43,13 @@ func main() {
 	fsHandler := http.StripPrefix("/static", http.FileServer(http.Dir(filepathRoot+"/static")))
 	mux.Handle("/static/", fsHandler)
 
+	// Page Views
 	mux.HandleFunc("/", handlerGetIndex)
 	mux.HandleFunc("/enrollment", handlerCreateEnrollment)
+	mux.HandleFunc("/login", handlerLogin)
 
-	// mux.HandleFunc("/api/login", apiCfg.handlerLogin)
+	// API endpoints
+	mux.HandleFunc("/api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 
 	srv := &http.Server{
