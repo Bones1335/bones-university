@@ -11,7 +11,7 @@ function convertLoginToJson() {
 }
 
 async function sendLoginData(jsonData) {
-    let url = URL + "api/login"
+    let url = "http://localhost:8080/api/login"
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -24,6 +24,7 @@ async function sendLoginData(jsonData) {
         const json = await response.json()
         if (json.token) {
             localStorage.setItem("token", json.token);
+            location.href = "/";
         } else {
             alert("Login failed")
         }
@@ -35,7 +36,7 @@ async function sendLoginData(jsonData) {
 }
 
 const loginButton = document.getElementById("loginButton");
-loginButton.addEventListener("click", () => {
+loginButton.addEventListener("click", (e) => {
     e.preventDefault();
     const json = convertLoginToJson();
     sendLoginData(json);
