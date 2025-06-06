@@ -47,6 +47,8 @@ func main() {
 	mux.HandleFunc("/", handlerGetIndex)
 	mux.HandleFunc("/enrollment", handlerCreateEnrollment)
 	mux.HandleFunc("/login", handlerLogin)
+	mux.HandleFunc("/student_dashboard", handlerStudentDashboard)
+	mux.HandleFunc("/admin_dashboard", handlerAdminDashboard)
 
 	// API endpoints
 	mux.HandleFunc("/api/login", apiCfg.handlerLogin)

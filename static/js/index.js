@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (token) {
         enroll.style.display = "none";
         loginButton.style.display = "none";
-        logoutButton.style.display = "block";
+        logoutButton.style.display = "inline-block";
     } else {
-        enroll.style.display = "block";
-        loginButton.style.display = "block";
+        enroll.style.display = "inline-block";
+        loginButton.style.display = "inline-block";
         logoutButton.style.display = "none";        
     }
 })

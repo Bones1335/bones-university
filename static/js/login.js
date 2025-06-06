@@ -24,7 +24,11 @@ async function sendLoginData(jsonData) {
         const json = await response.json()
         if (json.token) {
             localStorage.setItem("token", json.token);
-            location.href = "/";
+            if (json.isadmin) {
+                location.href = "/admin_dashboard"
+            } else {
+                location.href = "/student_dashboard"
+            }
         } else {
             alert("Login failed")
         }
