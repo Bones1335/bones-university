@@ -41,7 +41,7 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	accessToken, err := auth.MakeJWT(login.ID, cfg.jwtSecret, time.Hour)
+	accessToken, err := auth.MakeJWT(login.UsersID, cfg.jwtSecret, time.Hour)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "couldn't create access jwt", err)
 		return
@@ -54,7 +54,7 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_, err = cfg.db.CreateRefreshToken(r.Context(), database.CreateRefreshTokenParams{
-		UserID:    login.ID,
+		UserID:    login.UsersID,
 		Token:     refreshToken,
 		ExpiresAt: time.Now().UTC().Add(time.Hour * 24 * 60),
 	})
@@ -65,7 +65,7 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 
 	respondWithJSON(w, http.StatusOK, response{
 		User: database.User{
-			ID:              login.ID,
+			UsersID:         login.UsersID,
 			CreatedAt:       login.CreatedAt,
 			UpdatedAt:       login.UpdatedAt,
 			PersonalEmail:   login.PersonalEmail,

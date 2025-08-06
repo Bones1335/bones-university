@@ -11,19 +11,31 @@ import (
 
 const createRole = `-- name: CreateRole :one
 INSERT INTO roles (
-  id,
+  roles_id,
   role_name
 )
 VALUES (
   gen_random_uuid(),
   $1
 )
-RETURNING id, role_name
+RETURNING roles_id, role_name
 `
 
 func (q *Queries) CreateRole(ctx context.Context, roleName string) (Role, error) {
 	row := q.db.QueryRowContext(ctx, createRole, roleName)
 	var i Role
-	err := row.Scan(&i.ID, &i.RoleName)
+	err := row.Scan(&i.RolesID, &i.RoleName)
+	return i, err
+}
+
+const getSingleRole = `-- name: GetSingleRole :one
+SELECT roles_id, role_name FROM roles
+WHERE role_name = $1
+`
+
+func (q *Queries) GetSingleRole(ctx context.Context, roleName string) (Role, error) {
+	row := q.db.QueryRowContext(ctx, getSingleRole, roleName)
+	var i Role
+	err := row.Scan(&i.RolesID, &i.RoleName)
 	return i, err
 }

@@ -1,6 +1,6 @@
 -- name: CreateRole :one
 INSERT INTO roles (
-  id,
+  roles_id,
   role_name
 )
 VALUES (
@@ -8,3 +8,7 @@ VALUES (
   $1
 )
 RETURNING *;
+
+-- name: GetSingleRole :one 
+SELECT * FROM roles
+WHERE role_name = $1;

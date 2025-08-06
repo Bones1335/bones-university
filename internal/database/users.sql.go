@@ -11,7 +11,7 @@ import (
 
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (
-    id,
+    users_id,
     created_at,
     updated_at,
     last_name,
@@ -32,7 +32,7 @@ Values (
     $5,
     $6
 )
-RETURNING id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password
+RETURNING users_id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password
 `
 
 type CreateUserParams struct {
@@ -55,7 +55,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 	)
 	var i User
 	err := row.Scan(
-		&i.ID,
+		&i.UsersID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 		&i.LastName,
@@ -69,7 +69,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 }
 
 const login = `-- name: Login :one
-SELECT id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password FROM users
+SELECT users_id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password FROM users
 WHERE username = $1
 `
 
@@ -77,7 +77,7 @@ func (q *Queries) Login(ctx context.Context, username string) (User, error) {
 	row := q.db.QueryRowContext(ctx, login, username)
 	var i User
 	err := row.Scan(
-		&i.ID,
+		&i.UsersID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 		&i.LastName,

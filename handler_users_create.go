@@ -20,6 +20,7 @@ func (cfg *apiConfig) handlerCreateUsers(w http.ResponseWriter, r *http.Request)
 
 	type response struct {
 		database.User
+		database.UsersRole
 	}
 
 	decoder := json.NewDecoder(r.Body)
@@ -52,9 +53,20 @@ func (cfg *apiConfig) handlerCreateUsers(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	unsetRole, err := cfg.db.GetSingleRole(r.Context(), "unset")
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "couldn't find unset role", err)
+		return
+	}
+
+	initRole, err := cfg.db.CreateUsersRoles(r.Context(), database.CreateUsersRolesParams{
+		RoleID: unsetRole.RolesID,
+		UserID: user.UsersID,
+	})
+
 	respondWithJSON(w, http.StatusCreated, response{
 		database.User{
-			ID:              user.ID,
+			UsersID:         user.UsersID,
 			CreatedAt:       user.CreatedAt,
 			UpdatedAt:       user.UpdatedAt,
 			PersonalEmail:   user.PersonalEmail,
@@ -62,6 +74,11 @@ func (cfg *apiConfig) handlerCreateUsers(w http.ResponseWriter, r *http.Request)
 			FirstName:       user.FirstName,
 			Username:        user.Username,
 			UniversityEmail: user.UniversityEmail,
+		},
+		database.UsersRole{
+			UsersRolesID: initRole.UsersRolesID,
+			RoleID:       initRole.RoleID,
+			UserID:       initRole.UserID,
 		},
 	})
 }

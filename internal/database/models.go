@@ -21,12 +21,12 @@ type RefreshToken struct {
 }
 
 type Role struct {
-	ID       uuid.UUID `json:"id"`
+	RolesID  uuid.UUID `json:"roles_id"`
 	RoleName string    `json:"role_name"`
 }
 
 type User struct {
-	ID              uuid.UUID `json:"id"`
+	UsersID         uuid.UUID `json:"users_id"`
 	CreatedAt       time.Time `json:"created_at"`
 	UpdatedAt       time.Time `json:"updated_at"`
 	LastName        string    `json:"last_name"`
@@ -35,4 +35,10 @@ type User struct {
 	PersonalEmail   string    `json:"personal_email"`
 	UniversityEmail string    `json:"university_email"`
 	Password        string    `json:"password"`
+}
+
+type UsersRole struct {
+	UsersRolesID uuid.UUID `json:"users_roles_id"`
+	UserID       uuid.UUID `json:"user_id"`
+	RoleID       uuid.UUID `json:"role_id"`
 }
