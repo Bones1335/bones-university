@@ -8,8 +8,6 @@ INSERT INTO users (
     username,
     personal_email,
     university_email,
-    isStudent,
-    isAdmin,
     password
 )
 Values (
@@ -21,9 +19,7 @@ Values (
     $3,
     $4,
     $5,
-    $6,
-    $7,
-    $8
+    $6
 )
 RETURNING *;
 

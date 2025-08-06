@@ -73,8 +73,6 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 			Username:        login.Username,
 			LastName:        login.LastName,
 			FirstName:       login.FirstName,
-			Isstudent:       login.Isstudent,
-			Isadmin:         login.Isadmin,
 		},
 		Token:        accessToken,
 		RefreshToken: refreshToken,

@@ -29,7 +29,5 @@ type User struct {
 	Username        string    `json:"username"`
 	PersonalEmail   string    `json:"personal_email"`
 	UniversityEmail string    `json:"university_email"`
-	Isstudent       bool      `json:"isstudent"`
-	Isadmin         bool      `json:"isadmin"`
 	Password        string    `json:"password"`
 }

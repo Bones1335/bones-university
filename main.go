@@ -54,7 +54,8 @@ func main() {
 	mux.HandleFunc("/admin_dashboard", handlerAdminDashboard)
 
 	// API endpoints
-	mux.HandleFunc("POST /api/reset", apiCfg.handlerReset)
+	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
+
 	mux.HandleFunc("/api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 

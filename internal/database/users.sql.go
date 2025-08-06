@@ -18,9 +18,7 @@ INSERT INTO users (
     first_name,
     username,
     personal_email,
-	university_email,
-    isStudent,
-	isAdmin,
+    university_email,
     password
 )
 Values (
@@ -32,11 +30,9 @@ Values (
     $3,
     $4,
     $5,
-	$6,
-	$7,
-    $8
+    $6
 )
-RETURNING id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, isstudent, isadmin, password
+RETURNING id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password
 `
 
 type CreateUserParams struct {
@@ -45,8 +41,6 @@ type CreateUserParams struct {
 	Username        string `json:"username"`
 	PersonalEmail   string `json:"personal_email"`
 	UniversityEmail string `json:"university_email"`
-	Isstudent       bool   `json:"isstudent"`
-	Isadmin         bool   `json:"isadmin"`
 	Password        string `json:"password"`
 }
 
@@ -57,8 +51,6 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		arg.Username,
 		arg.PersonalEmail,
 		arg.UniversityEmail,
-		arg.Isstudent,
-		arg.Isadmin,
 		arg.Password,
 	)
 	var i User
@@ -71,15 +63,13 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 		&i.Username,
 		&i.PersonalEmail,
 		&i.UniversityEmail,
-		&i.Isstudent,
-		&i.Isadmin,
 		&i.Password,
 	)
 	return i, err
 }
 
 const login = `-- name: Login :one
-SELECT id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, isstudent, isadmin, password FROM users
+SELECT id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password FROM users
 WHERE username = $1
 `
 
@@ -95,8 +85,6 @@ func (q *Queries) Login(ctx context.Context, username string) (User, error) {
 		&i.Username,
 		&i.PersonalEmail,
 		&i.UniversityEmail,
-		&i.Isstudent,
-		&i.Isadmin,
 		&i.Password,
 	)
 	return i, err

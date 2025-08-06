@@ -54,6 +54,9 @@ func (cfg *apiConfig) handlerCreateUsers(w http.ResponseWriter, r *http.Request)
 
 	respondWithJSON(w, http.StatusCreated, response{
 		database.User{
+			ID:              user.ID,
+			CreatedAt:       user.CreatedAt,
+			UpdatedAt:       user.UpdatedAt,
 			PersonalEmail:   user.PersonalEmail,
 			LastName:        user.LastName,
 			FirstName:       user.FirstName,
