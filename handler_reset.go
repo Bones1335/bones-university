@@ -9,6 +9,7 @@ func (cfg *apiConfig) handlerReset(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cfg.db.ResetUsers(r.Context())
+	cfg.db.ResetRoles(r.Context())
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("database reset to initial state\n"))
 }

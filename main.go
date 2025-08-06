@@ -47,8 +47,11 @@ func main() {
 	mux.Handle("/app/", fsHandler)
 
 	// API endpoints
+	// Admin endpoints
 	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
+	mux.HandleFunc("POST /admin/roles", apiCfg.handlerCreateRoles)
 
+	// User endpoints
 	mux.HandleFunc("/api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 

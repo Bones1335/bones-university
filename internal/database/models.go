@@ -20,6 +20,11 @@ type RefreshToken struct {
 	RevokedAt sql.NullTime `json:"revoked_at"`
 }
 
+type Role struct {
+	ID       uuid.UUID `json:"id"`
+	RoleName string    `json:"role_name"`
+}
+
 type User struct {
 	ID              uuid.UUID `json:"id"`
 	CreatedAt       time.Time `json:"created_at"`

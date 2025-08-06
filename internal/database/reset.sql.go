@@ -9,6 +9,15 @@ import (
 	"context"
 )
 
+const resetRoles = `-- name: ResetRoles :exec
+DELETE FROM roles
+`
+
+func (q *Queries) ResetRoles(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetRoles)
+	return err
+}
+
 const resetUsers = `-- name: ResetUsers :exec
 DELETE FROM users
 `
