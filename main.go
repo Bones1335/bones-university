@@ -14,14 +14,16 @@ import (
 
 type apiConfig struct {
 	db        *database.Queries
+	platform  string
 	jwtSecret string
 }
 
 func main() {
 	env.SetEnv(".env")
 
-	dbURL := os.Getenv("DB_URL")
+	dbURL := os.Getenv("DATABASE_URL")
 	jwtSecret := os.Getenv("JWT_SECRET")
+	platform := os.Getenv("PLATFORM")
 
 	const filepathRoot = "."
 	const port = "8080"
@@ -35,6 +37,7 @@ func main() {
 
 	apiCfg := apiConfig{
 		db:        dbQueries,
+		platform:  platform,
 		jwtSecret: jwtSecret,
 	}
 
@@ -51,6 +54,7 @@ func main() {
 	mux.HandleFunc("/admin_dashboard", handlerAdminDashboard)
 
 	// API endpoints
+	mux.HandleFunc("POST /api/reset", apiCfg.handlerReset)
 	mux.HandleFunc("/api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 

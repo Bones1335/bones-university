@@ -68,7 +68,12 @@ func generateUsername(first, last string) string {
 	lLow := strings.ToLower(last)
 
 	beg := fLow[0]
-	end := lLow[:5]
+	var end string
+	if len(lLow) < 5 {
+		end = lLow
+	} else {
+		end = lLow[:5]
+	}
 
 	return fmt.Sprintf("%s%s", string(beg), end)
 }
