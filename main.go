@@ -43,15 +43,8 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	fsHandler := http.StripPrefix("/static", http.FileServer(http.Dir(filepathRoot+"/static")))
-	mux.Handle("/static/", fsHandler)
-
-	// Page Views
-	mux.HandleFunc("/", handlerGetIndex)
-	mux.HandleFunc("/enrollment", handlerCreateEnrollment)
-	mux.HandleFunc("/login", handlerLogin)
-	mux.HandleFunc("/student_dashboard", handlerStudentDashboard)
-	mux.HandleFunc("/admin_dashboard", handlerAdminDashboard)
+	fsHandler := http.StripPrefix("/app", http.FileServer(http.Dir(filepathRoot+"/app/.")))
+	mux.Handle("/app/", fsHandler)
 
 	// API endpoints
 	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
