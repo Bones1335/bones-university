@@ -21,3 +21,7 @@ echo $CREATE_STUDENT_ROLE | jq .
 CREATE_PROFESSOR_ROLE=$(curl -X POST http://localhost:8080/admin/roles -H "Content-Type:application/json" -d '{"role_name":"professor"}')
 
 echo $CREATE_PROFESSOR_ROLE | jq .
+
+LOGIN_JSNOW=$(curl -X POST http://localhost:8080/api/login -H "Content-Type:application/json" -d '{"login_username":"jsnow","login_password":"0123456"}')
+
+echo $LOGIN_JSNOW | jq .

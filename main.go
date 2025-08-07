@@ -46,13 +46,12 @@ func main() {
 	fsHandler := http.StripPrefix("/app", http.FileServer(http.Dir(filepathRoot+"/app/.")))
 	mux.Handle("/app/", fsHandler)
 
-	// API endpoints
 	// Admin endpoints
 	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
 	mux.HandleFunc("POST /admin/roles", apiCfg.handlerCreateRoles)
 
 	// User endpoints
-	mux.HandleFunc("/api/login", apiCfg.handlerLogin)
+	mux.HandleFunc("POST /api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 
 	srv := &http.Server{
@@ -60,6 +59,6 @@ func main() {
 		Handler: mux,
 	}
 
-	log.Printf("Serving files from http://localhost:%s/\n", port)
+	log.Printf("Serving files from http://localhost:%s/app/\n", port)
 	log.Fatal(srv.ListenAndServe())
 }
