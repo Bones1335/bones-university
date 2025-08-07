@@ -12,10 +12,10 @@ import (
 
 func (cfg *apiConfig) handlerCreateUsers(w http.ResponseWriter, r *http.Request) {
 	type parameters struct {
-		PersonalEmail string `json:"personal_email"`
-		LastName      string `json:"last_name"`
-		FirstName     string `json:"first_name"`
-		Password      string `json:"password"`
+		PersonalEmail string `json:"enrollment_personal_email"`
+		LastName      string `json:"enrollment_last_name"`
+		FirstName     string `json:"enrollment_first_name"`
+		Password      string `json:"enrollment_password"`
 	}
 
 	type response struct {

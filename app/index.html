@@ -50,7 +50,35 @@
       </div>
 
       <div class="screen" id="enrollment_screen">
-        <h2>This is the Enrollment Screen</h2>
+        <h2>Please fill out the enrollment form below.</h2>
+
+        <form id="enrollment_form">
+ 
+          <div class="form_group">
+            <label for="enrollment_last_name">Last Name:</label>
+            <input type="text" name="enrollment_last_name" id="enrollment_last_name">
+          </div>
+
+          <div class="form_group">
+            <label for="enrollment_first_name">First Name:</label>
+            <input type="text" name="enrollment_first_name" id="enrollment_first_name">
+          </div>
+
+          <div class="form_group">
+            <label for="enrollment_personal_email">Personal Email:</label>
+            <input type="text" name="enrollment_personal_email" id="enrollment_personal_email">
+          </div>
+
+          <div class="form_group">
+            <label for="enrollment_password">Password:</label>
+            <input type="password" name="enrollment_password" id="enrollment_password">
+          </div>
+
+          <button type="submit" class="btn">Enroll</button>
+          <div class="error" id="enrollment_error"></div>
+
+         
+        </form>
       </div>
 
 

@@ -18,6 +18,11 @@ class UniversityApp {
       await this.handleLogin(e);
     });
 
+    document.getElementById('enrollment_form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await this.handleEnrollment(e);
+    });
+
     this.setupNavigation();
   }
 
@@ -29,8 +34,6 @@ class UniversityApp {
 
         if (screenId === 'admin_dashboard_screen') {
           this.loadAdminDashboard();
-        } else if (screenId === 'enrollment_screen') {
-          this.loadEnrollment();
         } else if (screenId === 'student_dashboard_screen') {
           this.loadStudentDashboad();
         } else if (screenId === 'login_screen') {
@@ -65,7 +68,26 @@ class UniversityApp {
     }
   }
 
-  async loadEnrollment(e) {console.log("you are logged in to the enrollment screen.")}
+  async handleEnrollment(e) {
+    clearError('enrollment_error');
+
+    const formData = new FormData(e.target);
+    const userData = {
+      enrollment_last_name: formData.get('enrollment_last_name'),
+      enrollment_first_name: formData.get('enrollment_first_name'),
+      enrollment_personal_email: formData.get('enrollment_personal_email'),
+      enrollment_password: formData.get('enrollment_password'),
+    }
+
+    try {
+      const response = await userService.createUser(userData);
+      alert(`Here's your new username to login in to the university website: ${response.username}`);
+      showScreen('login_screen');
+      e.target.reset();
+    } catch (error) {
+      showError('enrollment_error', error.message);
+    }
+  }
 
   async loadAdminDashboad(e) {console.log("you are logged in to the admin dashboard.")}
 
@@ -76,4 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new UniversityApp();
 
   window.universityApp = app;
-})
+});
