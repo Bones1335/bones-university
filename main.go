@@ -54,6 +54,20 @@ func main() {
 	mux.HandleFunc("POST /api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
 
+	// TODO: Course endpoints
+
+	// TODO: Assignment endpoints
+
+	// TODO: Course_Assignment endpoints
+
+	// TODO: Grades ednpoints
+
+	// TODO: Assignment_Grade endpoints
+
+	// TODO: Internship enspoints
+
+	// TODO: Internship_User(student) endpoints
+
 	srv := &http.Server{
 		Addr:    ":" + port,
 		Handler: mux,
