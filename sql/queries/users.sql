@@ -26,3 +26,8 @@ RETURNING *;
 -- name: Login :one
 SELECT * FROM users
 WHERE username = $1;
+
+-- name: UpdateUser :one
+UPDATE users SET last_name = $2, first_name = $3, personal_email = $4, password = $5
+WHERE users_id = $1
+RETURNING *;

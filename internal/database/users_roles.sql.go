@@ -36,3 +36,34 @@ func (q *Queries) CreateUsersRoles(ctx context.Context, arg CreateUsersRolesPara
 	err := row.Scan(&i.UsersRolesID, &i.UserID, &i.RoleID)
 	return i, err
 }
+
+const getUsersRole = `-- name: GetUsersRole :one
+SELECT roles.role_name FROM roles
+INNER JOIN users_roles ON users_roles.role_id = roles.roles_id
+WHERE users_roles.user_id = $1
+`
+
+func (q *Queries) GetUsersRole(ctx context.Context, userID uuid.UUID) (string, error) {
+	row := q.db.QueryRowContext(ctx, getUsersRole, userID)
+	var role_name string
+	err := row.Scan(&role_name)
+	return role_name, err
+}
+
+const updateUsersRole = `-- name: UpdateUsersRole :one
+UPDATE users_roles SET role_id = $1
+WHERE user_id = $2
+RETURNING users_roles_id, user_id, role_id
+`
+
+type UpdateUsersRoleParams struct {
+	RoleID uuid.UUID `json:"role_id"`
+	UserID uuid.UUID `json:"user_id"`
+}
+
+func (q *Queries) UpdateUsersRole(ctx context.Context, arg UpdateUsersRoleParams) (UsersRole, error) {
+	row := q.db.QueryRowContext(ctx, updateUsersRole, arg.RoleID, arg.UserID)
+	var i UsersRole
+	err := row.Scan(&i.UsersRolesID, &i.UserID, &i.RoleID)
+	return i, err
+}

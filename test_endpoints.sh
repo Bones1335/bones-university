@@ -10,6 +10,8 @@ CREATE_USER=$(curl -X POST http://localhost:8080/api/users -H "Content-Type:appl
 
 echo $CREATE_USER | jq .
 
+jsnowID=$(echo $CREATE_USER | jq -r .users_id)
+
 CREATE_ADMIN_ROLE=$(curl -X POST http://localhost:8080/admin/roles -H "Content-Type:application/json" -d '{"role_name":"administrator"}')
 
 echo $CREATE_ADMIN_ROLE | jq .
@@ -25,3 +27,9 @@ echo $CREATE_PROFESSOR_ROLE | jq .
 LOGIN_JSNOW=$(curl -X POST http://localhost:8080/api/login -H "Content-Type:application/json" -d '{"login_username":"jsnow","login_password":"0123456"}')
 
 echo $LOGIN_JSNOW | jq .
+
+token=$(echo $LOGIN_JSNOW | jq -r .token)
+
+UPDATE_JSNOW=$(curl -X PUT "http://localhost:8080/api/users/$jsnowID" -H "Authorization: Bearer $token" -d "{\"users_id\":\"$jsnowID\",\"last_name\":\"Snow\",\"first_name\":\"John\",\"personal_email\":\"john.snow82@gmail.com\",\"password\":\"0123456\"}")
+
+echo $UPDATE_JSNOW | jq .
