@@ -11,10 +11,13 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
 
   -[x] CREATE Roles endpoint
     -[x] Role types: unset, admin, professor, student
+    
   -[] READ Roles endpoint
     -[x] read user's role  
+  
   -[] UPDATE Roles endpoint
     -[x] update user's role if admin is signed in
+  
   -[] DELETE Roles endpoint
 
   -[x] Login endpoint
