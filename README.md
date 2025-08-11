@@ -4,71 +4,49 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
 
 # TODO:
 
-  -[x] CREATE User/Enrollment endpoint
-  
-  -[] READ User endpoint
-
-  -[x] UPDATE User endpoint
-  
-  -[] DELETE User endpoint
-
-  -[x] CREATE Roles endpoint
-  
-    -[x] Role types: unset, admin, professor, student
+  - [x] CREATE User/Enrollment endpoint
+  - [ ] READ User endpoint
+  - [x] UPDATE User endpoint  
+  - [ ] DELETE User endpoint
+  - [x] CREATE Roles endpoint  
+    - [x] Role types: unset, admin, professor, student
     
-  -[] READ Roles endpoint
-  
-    -[x] read user's role  
-  
-  -[] UPDATE Roles endpoint
-  
-    -[x] update user's role if admin is signed in
-  
-  -[] DELETE Roles endpoint
+  - [ ] READ Roles endpoint  
+    - [x] read user's role    
+  - [ ] UPDATE Roles endpoint  
+    - [x] update user's role if admin is signed in  
+  - [ ] DELETE Roles endpoint
 
-  -[x] Login endpoint
+  - [x] Login endpoint
 
-  -[] Upload document model endpoint
+  - [ ] Upload document model endpoint
 
-  -[] CREATE Courses endpoint
+  - [ ] CREATE Courses endpoint  
+  - [ ] READ Courses endpoint  
+  - [ ] UPDATE Courses endpoint  
+  - [ ] DELETE Courses endpoint
   
-  -[] READ Courses endpoint
-  
-  -[] UPDATE Courses endpoint
-  
-  -[] DELETE Courses endpoint
+  - [ ] CREATE Course_Assignment endpoint  
+  - [ ] READ Course_Assignment endpoint  
+  - [ ] UPDATE Course_Assignment endpoint  
+  - [ ] DELETE Course_Assignment endpoint
 
-  -[] CREATE Course_Assignment endpoint
-  
-  -[] READ Course_Assignment endpoint
-  
-  -[] UPDATE Course_Assignment endpoint
-  
-  -[] DELETE Course_Assignment endpoint
+  - [ ] CREATE Grades endpoint  
+  - [ ] READ Grades endpoint  
+  - [ ] UPDATE Grades endpoint  
+  - [ ] DELETE Grades endpoint
 
-  -[] CREATE Grades endpoint
-  
-  -[] READ Grades endpoint
-  
-  -[] UPDATE Grades endpoint
-  
-  -[] DELETE Grades endpoint
+  - [ ] Link Grades, Courses, Assignments, Students, and Professors  
+    - [ ] One Professor linked to many Courses
+    - [ ] Table with many assignments per Course
+    - [ ] Table with Course ID, Assignment ID, Student ID, and Grade associated to that assignment
 
-  -[] Link Grades, Courses, Assignments, Students, and Professors
-  
-    -[] One Professor linked to many Courses
-    -[] Table with many assignments per Course
-    -[] Table with Course ID, Assignment ID, Student ID, and Grade associated to that assignment
+  - [ ] CREATE Internships endpoint
+    - an internship needs to designate the number of spots they have available    
+  - [ ] READ Internships endpoint  
+  - [ ] UPDATE Internships endpoint  
+  - [ ] DELETE Internships endpoint
 
-  -[] CREATE Internships endpoint
-    - an internship needs to designate the number of spots they have available
-    
-  -[] READ Internships endpoint
-  
-  -[] UPDATE Internships endpoint
-  
-  -[] DELETE Internships endpoint
+  - [ ] Connect one internship to many students
 
-  -[] Connect one internship to many students
-
-  -[] Collect internship and housing data to generate a payment report for each student's completed internship
+  - [ ] Collect internship and housing data to generate a payment report for each student's completed internship
