@@ -8,7 +8,7 @@ import (
 	"github.com/Bones1335/bones-university/internal/database"
 )
 
-func (cfg *apiConfig) handleUpdateUsers(w http.ResponseWriter, r *http.Request) {
+func (cfg *apiConfig) handlerUpdateUsers(w http.ResponseWriter, r *http.Request) {
 	type parameters struct {
 		LastName      string `json:"last_name"`
 		FirstName     string `json:"first_name"`

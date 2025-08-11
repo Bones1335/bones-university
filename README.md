@@ -2,17 +2,19 @@
 
 This app is an imitation of a university site like Blackboard, Moodle, and Canvas that has three roles: Admin, Professor, and Student. The dashboard for each role should change depending on who is logged in to the site. Once logged in, an admin can manage student enrollments, add document models for auto-generated admin documents, validate student grades submitted by professors, and more. Professors can assign and view submitted homework and input and submit grades. Students can submit homework, print or download administrative files to be completed and uploaded, and select their internship wishes.
 
-# TODO 
+# TODO:
 
   -[x] CREATE User/Enrollment endpoint
   -[] READ User endpoint
-  -[] UPDATE User endpoint
+  -[x] UPDATE User endpoint
   -[] DELETE User endpoint
 
   -[x] CREATE Roles endpoint
     -[x] Role types: unset, admin, professor, student
   -[] READ Roles endpoint
+    -[x] read user's role  
   -[] UPDATE Roles endpoint
+    -[x] update user's role if admin is signed in
   -[] DELETE Roles endpoint
 
   -[x] Login endpoint

@@ -49,11 +49,16 @@ func main() {
 	// Admin endpoints
 	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
 	mux.HandleFunc("POST /admin/roles", apiCfg.handlerCreateRoles)
+	mux.HandleFunc("PUT /admin/users_roles/{user_id}", apiCfg.handlerUpdateUsersRole)
 
 	// User endpoints
 	mux.HandleFunc("POST /api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
-	mux.HandleFunc("PUT /api/users/{user_id}", apiCfg.handleUpdateUsers)
+	mux.HandleFunc("PUT /api/users/{user_id}", apiCfg.handlerUpdateUsers)
+
+	// TODO: Degree endpoints
+
+	// TODO: Year_of_degree endpoints
 
 	// TODO: Course endpoints
 
