@@ -5,7 +5,7 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
 # TODO:
 
   - [x] CREATE User/Enrollment endpoint
-  - [ ] READ User endpoint
+  - [x] READ User endpoint
   - [x] UPDATE User endpoint  
   - [ ] DELETE User endpoint
   - [x] CREATE Roles endpoint  
@@ -20,6 +20,16 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
   - [x] Login endpoint
 
   - [ ] Upload document model endpoint
+
+  - [ ] CREATE Degree endpoint
+  - [ ] READ Degree endpoint
+  - [ ] UPDATE Degree endpoint
+  - [ ] DELETE Degree endpoint
+
+  - [ ] CREATE Year endpoint
+  - [ ] READ Year endpoint
+  - [ ] UPDATE Year endpoint
+  - [ ] DELETE Year endpoint
 
   - [ ] CREATE Courses endpoint  
   - [ ] READ Courses endpoint  

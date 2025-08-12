@@ -70,6 +70,28 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 	return i, err
 }
 
+const getSingleUser = `-- name: GetSingleUser :one
+SELECT users_id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password FROM users
+WHERE users_id = $1
+`
+
+func (q *Queries) GetSingleUser(ctx context.Context, usersID uuid.UUID) (User, error) {
+	row := q.db.QueryRowContext(ctx, getSingleUser, usersID)
+	var i User
+	err := row.Scan(
+		&i.UsersID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.LastName,
+		&i.FirstName,
+		&i.Username,
+		&i.PersonalEmail,
+		&i.UniversityEmail,
+		&i.Password,
+	)
+	return i, err
+}
+
 const login = `-- name: Login :one
 SELECT users_id, created_at, updated_at, last_name, first_name, username, personal_email, university_email, password FROM users
 WHERE username = $1

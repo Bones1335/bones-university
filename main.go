@@ -54,6 +54,7 @@ func main() {
 	// User endpoints
 	mux.HandleFunc("POST /api/login", apiCfg.handlerLogin)
 	mux.HandleFunc("POST /api/users", apiCfg.handlerCreateUsers)
+	mux.HandleFunc("GET /api/users/{user_id}", apiCfg.handlerGetUser)
 	mux.HandleFunc("PUT /api/users/{user_id}", apiCfg.handlerUpdateUsers)
 
 	// TODO: Degree endpoints

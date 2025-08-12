@@ -28,9 +28,9 @@ LOGIN_JSNOW=$(curl -X POST http://localhost:8080/api/login -H "Content-Type:appl
 
 echo $LOGIN_JSNOW | jq .
 
-token=$(echo $LOGIN_JSNOW | jq -r .token)
+jsToken=$(echo $LOGIN_JSNOW | jq -r .token)
 
-UPDATE_JSNOW=$(curl -X PUT "http://localhost:8080/api/users/$jsnowID" -H "Authorization: Bearer $token" -d "{\"users_id\":\"$jsnowID\",\"last_name\":\"Snow\",\"first_name\":\"John\",\"personal_email\":\"john.snow82@gmail.com\",\"password\":\"0123456\"}")
+UPDATE_JSNOW=$(curl -X PUT "http://localhost:8080/api/users/$jsnowID" -H "Authorization: Bearer $jsToken" -d "{\"users_id\":\"$jsnowID\",\"last_name\":\"Snow\",\"first_name\":\"John\",\"personal_email\":\"john.snow82@gmail.com\",\"password\":\"0123456\"}")
 
 echo $UPDATE_JSNOW | jq .
 
@@ -47,6 +47,16 @@ WHERE user_id = :'jsnow_id'
 RETURNING user_id, role_id;
 EOF
 
-UPDATE_JDOE_ROLE=$(curl -X PUT "http://localhost:8080/admin/users_roles/$jdoeID" -H "Authorization: Bearer $token" -d "{\"role_name\":\"student\",\"users_id\":\"$jdoeID\"}")
+UPDATE_JDOE_ROLE=$(curl -X PUT "http://localhost:8080/admin/users_roles/$jdoeID" -H "Authorization: Bearer $jsToken" -d "{\"role_name\":\"student\",\"users_id\":\"$jdoeID\"}")
 
 echo $UPDATE_JDOE_ROLE | jq .
+
+LOGIN_JDOE=$(curl -X POST http://localhost:8080/api/login -H "Content-Type:application/json" -d '{"login_username":"jdoe","login_password":"0123456"}')
+
+echo $LOGIN_JDOE | jq .
+
+jdToken=$(echo $LOGIN_JDOE | jq -r .token)
+
+GET_JDOE_INFO=$(curl -X GET "http://localhost:8080/api/users/$jdoeID" -H "Authorization: Bearer $jdToken")
+
+echo $GET_JDOE_INFO | jq .
