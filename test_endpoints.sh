@@ -60,3 +60,11 @@ jdToken=$(echo $LOGIN_JDOE | jq -r .token)
 GET_JDOE_INFO=$(curl -X GET "http://localhost:8080/api/users/$jdoeID" -H "Authorization: Bearer $jdToken")
 
 echo $GET_JDOE_INFO | jq .
+
+CREATE_DEGREE_JSNOW=$(curl -X POST http://localhost:8080/admin/degrees -H "Authorization: Cearer $jsToken" -d '{"degree_name":"Physical Therapy","degree_level":"Masters","degree_department":"Rehabilitation Department","degree_duration":4}')
+
+echo $CREATE_DEGREE_JSNOW | jq .
+
+CREATE_DEGREE_JDOE=$(curl -X POST http://localhost:8080/admin/degrees -H "Authorization: Cearer $jdToken" -d "{}")
+
+echo $CREATE_DEGREE_JDOE | jq .

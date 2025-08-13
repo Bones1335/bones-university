@@ -50,6 +50,7 @@ func main() {
 	mux.HandleFunc("POST /admin/reset", apiCfg.handlerReset)
 	mux.HandleFunc("POST /admin/roles", apiCfg.handlerCreateRoles)
 	mux.HandleFunc("PUT /admin/users_roles/{user_id}", apiCfg.handlerUpdateUsersRole)
+	mux.HandleFunc("POST /admin/degrees", apiCfg.handlerCreateDegrees)
 
 	// User endpoints
 	mux.HandleFunc("POST /api/login", apiCfg.handlerLogin)

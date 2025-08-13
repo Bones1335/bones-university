@@ -11,6 +11,16 @@ import (
 	"github.com/google/uuid"
 )
 
+type DegreeProgram struct {
+	DegreesID        uuid.UUID `json:"degrees_id"`
+	CreatedAt        time.Time `json:"created_at"`
+	UpdatedAt        time.Time `json:"updated_at"`
+	DegreeName       string    `json:"degree_name"`
+	DegreeLevel      string    `json:"degree_level"`
+	DegreeDepartment string    `json:"degree_department"`
+	DegreeDuration   int16     `json:"degree_duration"`
+}
+
 type RefreshToken struct {
 	Token     string       `json:"token"`
 	CreatedAt time.Time    `json:"created_at"`
