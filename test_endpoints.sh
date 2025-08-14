@@ -65,6 +65,14 @@ CREATE_DEGREE_JSNOW=$(curl -X POST http://localhost:8080/admin/degrees -H "Autho
 
 echo $CREATE_DEGREE_JSNOW | jq .
 
-CREATE_DEGREE_JDOE=$(curl -X POST http://localhost:8080/admin/degrees -H "Authorization: Cearer $jdToken" -d "{}")
+CREATE_DEGREE_JDOE=$(curl -X POST http://localhost:8080/admin/degrees -H "Authorization: Cearer $jdToken" -d '{"degree_name":"Speech Language Therapy","degree_level":"Masters","degree_department":"Rehabilitation Department","degree_duration":3}')
 
 echo $CREATE_DEGREE_JDOE | jq .
+
+CREATE_DEGREE_JSNOW=$(curl -X POST http://localhost:8080/admin/degrees -H "Authorization: Cearer $jsToken" -d '{"degree_name":"French and Francophone Studies","degree_level":"Masters","degree_department":"French and Italian Department","degree_duration":2}')
+
+echo $CREATE_DEGREE_JSNOW | jq .
+
+GET_DEGREES=$(curl http://localhost:8080/api/degrees -H "Content-Type:application/json")
+
+echo $GET_DEGREES | jq .

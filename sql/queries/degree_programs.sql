@@ -18,3 +18,6 @@ VALUES (
     $4
 )
 RETURNING *;
+
+-- name: GetDegrees :many 
+SELECT * FROM degree_programs;

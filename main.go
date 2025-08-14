@@ -59,6 +59,7 @@ func main() {
 	mux.HandleFunc("PUT /api/users/{user_id}", apiCfg.handlerUpdateUsers)
 
 	// TODO: Degree endpoints
+	mux.HandleFunc("GET /api/degrees", apiCfg.handlerGetDegrees)
 
 	// TODO: Year_of_degree endpoints
 

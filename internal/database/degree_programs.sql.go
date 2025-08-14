@@ -57,3 +57,38 @@ func (q *Queries) CreateDegreePrograms(ctx context.Context, arg CreateDegreeProg
 	)
 	return i, err
 }
+
+const getDegrees = `-- name: GetDegrees :many
+SELECT degrees_id, created_at, updated_at, degree_name, degree_level, degree_department, degree_duration FROM degree_programs
+`
+
+func (q *Queries) GetDegrees(ctx context.Context) ([]DegreeProgram, error) {
+	rows, err := q.db.QueryContext(ctx, getDegrees)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []DegreeProgram
+	for rows.Next() {
+		var i DegreeProgram
+		if err := rows.Scan(
+			&i.DegreesID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DegreeName,
+			&i.DegreeLevel,
+			&i.DegreeDepartment,
+			&i.DegreeDuration,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

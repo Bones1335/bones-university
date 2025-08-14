@@ -23,9 +23,13 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
   - [ ] Upload document model endpoint
 
   - [x] CREATE Degree endpoint
-  - [ ] READ Degree endpoint
+    - this is an admin endpoint
+  - [x] READ Degree endpoint
+    - this is an endpoint for everyone
   - [ ] UPDATE Degree endpoint
+    - this is an admin endpoint
   - [ ] DELETE Degree endpoint
+    - this is an admin endpoint
 
   - [ ] CREATE Year endpoint
   - [ ] READ Year endpoint
