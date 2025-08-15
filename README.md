@@ -31,7 +31,7 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
   - [ ] DELETE Degree endpoint
     - this is an admin endpoint
 
-  - [ ] CREATE Year endpoint
+  - [x] CREATE Year endpoint
   - [ ] READ Year endpoint
   - [ ] UPDATE Year endpoint
   - [ ] DELETE Year endpoint

@@ -52,3 +52,8 @@ type UsersRole struct {
 	UserID       uuid.UUID `json:"user_id"`
 	RoleID       uuid.UUID `json:"role_id"`
 }
+
+type Year struct {
+	YearsID      uuid.UUID `json:"years_id"`
+	YearInSchool int16     `json:"year_in_school"`
+}
