@@ -56,6 +56,10 @@ func (cfg *apiConfig) handlerCreateDegrees(w http.ResponseWriter, r *http.Reques
 		DegreeDepartment: params.DegreeDepartment,
 		DegreeDuration:   params.DegreeDuration,
 	})
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "couldn't create degree program", err)
+		return
+	}
 
 	respondWithJSON(w, http.StatusOK, response{
 		database.DegreeProgram{

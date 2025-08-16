@@ -36,6 +36,11 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
   - [ ] UPDATE Year endpoint
   - [ ] DELETE Year endpoint
 
+  - [ ] CREATE Student_Program endpoint
+  - [ ] READ Student_Program endpoint
+  - [ ] UPDATE Student_Program endpoint
+  - [ ] DELETE Student_Program endpoint
+
   - [ ] CREATE Courses endpoint
   - [ ] READ Courses endpoint
   - [ ] UPDATE Courses endpoint

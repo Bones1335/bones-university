@@ -47,6 +47,15 @@ type User struct {
 	Password        string    `json:"password"`
 }
 
+type UsersProgram struct {
+	UsersProgramID uuid.UUID `json:"users_program_id"`
+	CohortYear     int32     `json:"cohort_year"`
+	StartDate      time.Time `json:"start_date"`
+	StudentID      uuid.UUID `json:"student_id"`
+	ProgramID      uuid.UUID `json:"program_id"`
+	AcademicYearID uuid.UUID `json:"academic_year_id"`
+}
+
 type UsersRole struct {
 	UsersRolesID uuid.UUID `json:"users_roles_id"`
 	UserID       uuid.UUID `json:"user_id"`

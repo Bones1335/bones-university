@@ -9,6 +9,15 @@ import (
 	"context"
 )
 
+const resetDegrees = `-- name: ResetDegrees :exec
+DELETE FROM degree_programs
+`
+
+func (q *Queries) ResetDegrees(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetDegrees)
+	return err
+}
+
 const resetRoles = `-- name: ResetRoles :exec
 DELETE FROM roles
 `
@@ -24,5 +33,32 @@ DELETE FROM users
 
 func (q *Queries) ResetUsers(ctx context.Context) error {
 	_, err := q.db.ExecContext(ctx, resetUsers)
+	return err
+}
+
+const resetUsersPrograms = `-- name: ResetUsersPrograms :exec
+DELETE FROM users_programs
+`
+
+func (q *Queries) ResetUsersPrograms(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetUsersPrograms)
+	return err
+}
+
+const resetUsersRoles = `-- name: ResetUsersRoles :exec
+DELETE FROM users_roles
+`
+
+func (q *Queries) ResetUsersRoles(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetUsersRoles)
+	return err
+}
+
+const resetYears = `-- name: ResetYears :exec
+DELETE FROM years
+`
+
+func (q *Queries) ResetYears(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetYears)
 	return err
 }
