@@ -15,3 +15,6 @@ DELETE FROM years;
 
 -- name: ResetUsersPrograms :exec
 DELETE FROM users_programs;
+
+-- name: ResetCourses :exec
+DELETE FROM courses;

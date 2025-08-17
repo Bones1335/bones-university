@@ -14,6 +14,7 @@ func (cfg *apiConfig) handlerReset(w http.ResponseWriter, r *http.Request) {
 	cfg.db.ResetDegrees(r.Context())
 	cfg.db.ResetYears(r.Context())
 	cfg.db.ResetUsersPrograms(r.Context())
+	cfg.db.ResetCourses(r.Context())
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("database reset to initial state\n"))
 }

@@ -36,7 +36,7 @@ echo $LOGIN_JSNOW | jq .
 
 jsToken=$(echo $LOGIN_JSNOW | jq -r .token)
 
-echo "Update 'Johm Snow'"
+echo "Update 'John Snow'"
 UPDATE_JSNOW=$(curl -X PUT "http://localhost:8080/api/users/$jsnowID" -H "Authorization: Bearer $jsToken" -d "{\"users_id\":\"$jsnowID\",\"last_name\":\"Snow\",\"first_name\":\"John\",\"personal_email\":\"john.snow82@gmail.com\",\"password\":\"0123456\"}")
 
 echo $UPDATE_JSNOW | jq .
@@ -125,3 +125,27 @@ echo "Enroll John Doe in 'physical therapy degree program'"
 ENROLL_JDOE=$(curl -X POST http://localhost:8080/api/students_programs -H "Content-Type:appplication/json" -d "{\"cohort_year\":2025,\"start_date\":\"2025-09-01T00:00:00Z\",\"student_id\":\"$jdoeID\",\"program_id\":\"$physicalTherapy\",\"academic_year_id\":\"$startingYear\"}")
 
 echo $ENROLL_JDOE | jq .
+
+echo "Create 'Robert Jordan' user"
+CREATE_RJORDAN_USER=$(curl -X POST http://localhost:8080/api/users -H "Content-Type:application/json" -d '{"enrollment_last_name":"Jordan","enrollment_first_name":"Robert","enrollment_personal_email":"jordan.robert@gmail.com","enrollment_password":"0123456"}')
+
+echo $CREATE_RJORDAN_USER | jq .
+
+rjordanID=$(echo $CREATE_RJORDAN_USER | jq -r .users_id)
+
+echo "Update 'Robert Jordan' role as John Snow"
+UPDATE_RJORDAN_ROLE=$(curl -X PUT "http://localhost:8080/admin/users_roles/$rjordanID" -H "Authorization: Bearer $jsToken" -d "{\"role_name\":\"professor\",\"users_id\":\"$rjordanID\"}")
+
+echo $UPDATE_RJORDAN_ROLE | jq .
+
+echo "Login 'Robert Jordan'"
+LOGIN_RJORDAN=$(curl -X POST http://localhost:8080/api/login -H "Content-Type:application/json" -d '{"login_username":"rjorda","login_password":"0123456"}')
+
+echo $LOGIN_RJORDAN | jq .
+
+rjToken=$(echo $LOGIN_RJORDAN | jq -r .token)
+
+echo "Create 'anatomy course' as Robert Jordan"
+CREATE_COURSE_RJORDAN=$(curl -X POST http://localhost:8080/api/courses -H "Authorization: Bearer $rjToken" -d "{\"course_code\":\"UE1\",\"course_name\":\"Spinal Anatomy\",\"course_description\":\"This course will go over the anatomy of the spine.\",\"course_professor_id\":\"$rjordanID\"}")
+
+echo $CREATE_COURSE_RJORDAN | jq .
