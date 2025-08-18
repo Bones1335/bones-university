@@ -152,6 +152,12 @@ echo $CREATE_COURSE_RJORDAN | jq .
 
 spinalCourse=$(echo $CREATE_COURSE_RJORDAN | jq -r .courses_id)
 
+echo "Link 'anatomy course' to 'physical therapy degree'as Robert Jordan"
 CREATE_DEGREES_COURSES_RJORDAN=$(curl -X POST http://localhost:8080/api/degrees_courses -H "Authorization: Bearer $rjToken" -d "{\"degree_id\":\"$physicalTherapy\",\"course_id\":\"$spinalCourse\"}")
 
 echo $CREATE_DEGREES_COURSES_RJORDAN | jq .
+
+echo "Create 'anatomy assignment' as Robert Jordan"
+CREATE_ASSIGNMENT_RJORDAN=$(curl -X POST http://localhost:8080/api/assignments -H "Authorization: Bearer $rjToken" -d "{\"assignment_name\":\"Spinal Cord Labeling\",\"assignment_due_date\":\"2025-10-31T23:59:00Z\",\"assignment_description\":\"This assignment asks you to label each anatomical component of the spinal cord. Use the attached document that's a picture of the spine with the blank lines you need to fill in with each element. You have until midnight on Halloween to submit your completed worksheet.\"}")
+
+echo $CREATE_ASSIGNMENT_RJORDAN | jq .

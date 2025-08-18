@@ -72,6 +72,7 @@ func main() {
 	mux.HandleFunc("POST /api/degrees_courses", apiCfg.handlerCreateDegreesCourses)
 
 	// TODO: Assignment endpoints
+	mux.HandleFunc("POST /api/assignments", apiCfg.handlerCreateAssignments)
 
 	// TODO: Course_Assignment endpoints
 

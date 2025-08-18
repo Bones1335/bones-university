@@ -21,3 +21,6 @@ DELETE FROM courses;
 
 -- name: ResetDegreesCourses :exec
 DELETE FROM degrees_courses;
+
+-- name: ResetAssignments :exec
+DELETE FROM assignments;

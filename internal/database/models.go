@@ -11,6 +11,15 @@ import (
 	"github.com/google/uuid"
 )
 
+type Assignment struct {
+	AssignmentsID         uuid.UUID `json:"assignments_id"`
+	CreatedAt             time.Time `json:"created_at"`
+	UpdatedAt             time.Time `json:"updated_at"`
+	AssignmentName        string    `json:"assignment_name"`
+	AssignmentDueDate     time.Time `json:"assignment_due_date"`
+	AssignmentDescription string    `json:"assignment_description"`
+}
+
 type Course struct {
 	CoursesID         uuid.UUID `json:"courses_id"`
 	CreatedAt         time.Time `json:"created_at"`
