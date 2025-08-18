@@ -27,6 +27,15 @@ func (q *Queries) ResetDegrees(ctx context.Context) error {
 	return err
 }
 
+const resetDegreesCourses = `-- name: ResetDegreesCourses :exec
+DELETE FROM degrees_courses
+`
+
+func (q *Queries) ResetDegreesCourses(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetDegreesCourses)
+	return err
+}
+
 const resetRoles = `-- name: ResetRoles :exec
 DELETE FROM roles
 `

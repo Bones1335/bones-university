@@ -31,6 +31,14 @@ type DegreeProgram struct {
 	DegreeDuration   int16     `json:"degree_duration"`
 }
 
+type DegreesCourse struct {
+	DegreesCoursesID uuid.UUID `json:"degrees_courses_id"`
+	CreatedAt        time.Time `json:"created_at"`
+	UpdatedAt        time.Time `json:"updated_at"`
+	DegreeID         uuid.UUID `json:"degree_id"`
+	CourseID         uuid.UUID `json:"course_id"`
+}
+
 type RefreshToken struct {
 	Token     string       `json:"token"`
 	CreatedAt time.Time    `json:"created_at"`

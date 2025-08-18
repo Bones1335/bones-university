@@ -18,3 +18,6 @@ DELETE FROM users_programs;
 
 -- name: ResetCourses :exec
 DELETE FROM courses;
+
+-- name: ResetDegreesCourses :exec
+DELETE FROM degrees_courses;

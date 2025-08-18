@@ -149,3 +149,9 @@ echo "Create 'anatomy course' as Robert Jordan"
 CREATE_COURSE_RJORDAN=$(curl -X POST http://localhost:8080/api/courses -H "Authorization: Bearer $rjToken" -d "{\"course_code\":\"UE1\",\"course_name\":\"Spinal Anatomy\",\"course_description\":\"This course will go over the anatomy of the spine.\",\"course_professor_id\":\"$rjordanID\"}")
 
 echo $CREATE_COURSE_RJORDAN | jq .
+
+spinalCourse=$(echo $CREATE_COURSE_RJORDAN | jq -r .courses_id)
+
+CREATE_DEGREES_COURSES_RJORDAN=$(curl -X POST http://localhost:8080/api/degrees_courses -H "Authorization: Bearer $rjToken" -d "{\"degree_id\":\"$physicalTherapy\",\"course_id\":\"$spinalCourse\"}")
+
+echo $CREATE_DEGREES_COURSES_RJORDAN | jq .
