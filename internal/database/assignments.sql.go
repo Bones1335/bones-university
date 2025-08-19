@@ -8,6 +8,8 @@ package database
 import (
 	"context"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 const createAssignments = `-- name: CreateAssignments :one
@@ -17,7 +19,8 @@ INSERT INTO assignments (
   updated_at,
   assignment_name,
   assignment_due_date,
-  assignment_description
+  assignment_description,
+  course_id
 )
 VALUES (
   gen_random_uuid(),
@@ -25,19 +28,26 @@ VALUES (
   NOW(),
   $1,
   $2,
-  $3
+  $3,
+  $4
 )
-RETURNING assignments_id, created_at, updated_at, assignment_name, assignment_due_date, assignment_description
+RETURNING assignments_id, created_at, updated_at, assignment_name, assignment_due_date, assignment_description, course_id
 `
 
 type CreateAssignmentsParams struct {
 	AssignmentName        string    `json:"assignment_name"`
 	AssignmentDueDate     time.Time `json:"assignment_due_date"`
 	AssignmentDescription string    `json:"assignment_description"`
+	CourseID              uuid.UUID `json:"course_id"`
 }
 
 func (q *Queries) CreateAssignments(ctx context.Context, arg CreateAssignmentsParams) (Assignment, error) {
-	row := q.db.QueryRowContext(ctx, createAssignments, arg.AssignmentName, arg.AssignmentDueDate, arg.AssignmentDescription)
+	row := q.db.QueryRowContext(ctx, createAssignments,
+		arg.AssignmentName,
+		arg.AssignmentDueDate,
+		arg.AssignmentDescription,
+		arg.CourseID,
+	)
 	var i Assignment
 	err := row.Scan(
 		&i.AssignmentsID,
@@ -46,6 +56,7 @@ func (q *Queries) CreateAssignments(ctx context.Context, arg CreateAssignmentsPa
 		&i.AssignmentName,
 		&i.AssignmentDueDate,
 		&i.AssignmentDescription,
+		&i.CourseID,
 	)
 	return i, err
 }

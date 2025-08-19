@@ -18,6 +18,7 @@ type Assignment struct {
 	AssignmentName        string    `json:"assignment_name"`
 	AssignmentDueDate     time.Time `json:"assignment_due_date"`
 	AssignmentDescription string    `json:"assignment_description"`
+	CourseID              uuid.UUID `json:"course_id"`
 }
 
 type Course struct {

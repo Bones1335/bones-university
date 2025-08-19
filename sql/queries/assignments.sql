@@ -5,7 +5,8 @@ INSERT INTO assignments (
   updated_at,
   assignment_name,
   assignment_due_date,
-  assignment_description
+  assignment_description,
+  course_id
 )
 VALUES (
   gen_random_uuid(),
@@ -13,6 +14,7 @@ VALUES (
   NOW(),
   $1,
   $2,
-  $3
+  $3,
+  $4
 )
 RETURNING *;

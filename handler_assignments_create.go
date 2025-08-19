@@ -7,6 +7,7 @@ import (
 
 	"github.com/Bones1335/bones-university/internal/auth"
 	"github.com/Bones1335/bones-university/internal/database"
+	"github.com/google/uuid"
 )
 
 func (cfg *apiConfig) handlerCreateAssignments(w http.ResponseWriter, r *http.Request) {
@@ -14,6 +15,7 @@ func (cfg *apiConfig) handlerCreateAssignments(w http.ResponseWriter, r *http.Re
 		AssignmentName        string    `json:"assignment_name"`
 		AssignmentDueDate     time.Time `json:"assignment_due_date"`
 		AssignmentDescription string    `json:"assignment_description"`
+		CourseID              uuid.UUID `json:"course_id"`
 	}
 
 	type response struct {
@@ -54,6 +56,7 @@ func (cfg *apiConfig) handlerCreateAssignments(w http.ResponseWriter, r *http.Re
 		AssignmentName:        params.AssignmentName,
 		AssignmentDueDate:     params.AssignmentDueDate,
 		AssignmentDescription: params.AssignmentDescription,
+		CourseID:              params.CourseID,
 	})
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "couldn't create assignment", err)
