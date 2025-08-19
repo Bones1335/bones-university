@@ -15,6 +15,7 @@ func (cfg *apiConfig) handlerCreateAssignments(w http.ResponseWriter, r *http.Re
 		AssignmentName        string    `json:"assignment_name"`
 		AssignmentDueDate     time.Time `json:"assignment_due_date"`
 		AssignmentDescription string    `json:"assignment_description"`
+		AssignmentWeight      int32     `json:"assignment_weight"`
 		CourseID              uuid.UUID `json:"course_id"`
 	}
 
@@ -56,6 +57,7 @@ func (cfg *apiConfig) handlerCreateAssignments(w http.ResponseWriter, r *http.Re
 		AssignmentName:        params.AssignmentName,
 		AssignmentDueDate:     params.AssignmentDueDate,
 		AssignmentDescription: params.AssignmentDescription,
+		AssignmentWeight:      params.AssignmentWeight,
 		CourseID:              params.CourseID,
 	})
 	if err != nil {

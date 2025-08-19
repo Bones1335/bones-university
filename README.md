@@ -62,10 +62,10 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
   - [ ] UPDATE Student_Assignments endpoint
   - [ ] DELETE Student_Assignments endpoint
 
-  - [ ] CREATE Grades endpoint
-  - [ ] READ Grades endpoint
-  - [ ] UPDATE Grades endpoint
-  - [ ] DELETE Grades endpoint
+  - [ ] CREATE Assignment_Grades endpoint
+  - [ ] READ Assignment_Grades endpoint
+  - [ ] UPDATE Assignment_Grades endpoint
+  - [ ] DELETE Assignment_Grades endpoint
 
   - [ ] Link Grades, Courses, Assignments, Students, and Professors
     - [ ] One Professor linked to many Courses

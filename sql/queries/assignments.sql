@@ -6,6 +6,7 @@ INSERT INTO assignments (
   assignment_name,
   assignment_due_date,
   assignment_description,
+  assignment_weight,
   course_id
 )
 VALUES (
@@ -15,6 +16,7 @@ VALUES (
   $1,
   $2,
   $3,
-  $4
+  $4,
+  $5
 )
 RETURNING *;

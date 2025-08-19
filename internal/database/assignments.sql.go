@@ -20,6 +20,7 @@ INSERT INTO assignments (
   assignment_name,
   assignment_due_date,
   assignment_description,
+  assignment_weight,
   course_id
 )
 VALUES (
@@ -29,15 +30,17 @@ VALUES (
   $1,
   $2,
   $3,
-  $4
+  $4,
+  $5
 )
-RETURNING assignments_id, created_at, updated_at, assignment_name, assignment_due_date, assignment_description, course_id
+RETURNING assignments_id, created_at, updated_at, assignment_name, assignment_due_date, assignment_description, assignment_weight, course_id
 `
 
 type CreateAssignmentsParams struct {
 	AssignmentName        string    `json:"assignment_name"`
 	AssignmentDueDate     time.Time `json:"assignment_due_date"`
 	AssignmentDescription string    `json:"assignment_description"`
+	AssignmentWeight      int32     `json:"assignment_weight"`
 	CourseID              uuid.UUID `json:"course_id"`
 }
 
@@ -46,6 +49,7 @@ func (q *Queries) CreateAssignments(ctx context.Context, arg CreateAssignmentsPa
 		arg.AssignmentName,
 		arg.AssignmentDueDate,
 		arg.AssignmentDescription,
+		arg.AssignmentWeight,
 		arg.CourseID,
 	)
 	var i Assignment
@@ -56,6 +60,7 @@ func (q *Queries) CreateAssignments(ctx context.Context, arg CreateAssignmentsPa
 		&i.AssignmentName,
 		&i.AssignmentDueDate,
 		&i.AssignmentDescription,
+		&i.AssignmentWeight,
 		&i.CourseID,
 	)
 	return i, err
