@@ -161,3 +161,8 @@ echo "Create 'anatomy assignment' as Robert Jordan"
 CREATE_ASSIGNMENT_RJORDAN=$(curl -X POST http://localhost:8080/api/assignments -H "Authorization: Bearer $rjToken" -d "{\"assignment_name\":\"Spinal Cord Labeling\",\"assignment_due_date\":\"2025-10-31T23:59:00Z\",\"assignment_description\":\"This assignment asks you to label each anatomical component of the spinal cord. Use the attached document that's a picture of the spine with the blank lines you need to fill in with each element. You have until midnight on Halloween to submit your completed worksheet.\",\"assignment_weight\":10,\"course_id\":\"$spinalCourse\"}")
 
 echo $CREATE_ASSIGNMENT_RJORDAN | jq .
+
+echo "Enroll John Doe in 'Spinal Anatomy course'"
+ENROLL_JDOE_IN_SPINAL_ANATOMY=$(curl -X POST http://localhost:8080/api/course_enrollment -H "Authorization: Bearer $jdToken" -d "{\"course_id\":\"$spinalCourse\"}")
+
+echo $ENROLL_JDOE_IN_SPINAL_ANATOMY | jq .

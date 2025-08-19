@@ -32,6 +32,13 @@ type Course struct {
 	CourseProfessorID uuid.UUID `json:"course_professor_id"`
 }
 
+type CourseEnrollment struct {
+	EnrollmentID uuid.UUID `json:"enrollment_id"`
+	FinalGrade   string    `json:"final_grade"`
+	CourseID     uuid.UUID `json:"course_id"`
+	UserID       uuid.UUID `json:"user_id"`
+}
+
 type DegreeProgram struct {
 	DegreesID        uuid.UUID `json:"degrees_id"`
 	CreatedAt        time.Time `json:"created_at"`

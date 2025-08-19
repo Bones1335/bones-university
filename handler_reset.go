@@ -17,6 +17,7 @@ func (cfg *apiConfig) handlerReset(w http.ResponseWriter, r *http.Request) {
 	cfg.db.ResetCourses(r.Context())
 	cfg.db.ResetDegreesCourses(r.Context())
 	cfg.db.ResetAssignments(r.Context())
+	cfg.db.ResetCourseEnrollment(r.Context())
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("database reset to initial state\n"))
 }

@@ -71,7 +71,8 @@ func main() {
 	// TODO: Degrees_Courses endpoints
 	mux.HandleFunc("POST /api/degrees_courses", apiCfg.handlerCreateDegreesCourses)
 
-	// TODO: Users_Courses endpoints
+	// TODO: Users_Courses endpoints (course enrollment)
+	mux.HandleFunc("POST /api/course_enrollment", apiCfg.handlerCreateCourseEnrollment)
 
 	// TODO: Assignment endpoints
 	mux.HandleFunc("POST /api/assignments", apiCfg.handlerCreateAssignments)
