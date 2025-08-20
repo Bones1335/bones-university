@@ -9,6 +9,15 @@ import (
 	"context"
 )
 
+const resetAssignmentGrades = `-- name: ResetAssignmentGrades :exec
+DELETE FROM assignment_grades
+`
+
+func (q *Queries) ResetAssignmentGrades(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetAssignmentGrades)
+	return err
+}
+
 const resetAssignments = `-- name: ResetAssignments :exec
 DELETE FROM assignments
 `

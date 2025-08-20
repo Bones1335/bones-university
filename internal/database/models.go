@@ -22,6 +22,13 @@ type Assignment struct {
 	CourseID              uuid.UUID `json:"course_id"`
 }
 
+type AssignmentGrade struct {
+	AssignmentGradesID uuid.UUID `json:"assignment_grades_id"`
+	AssingmnetGrade    string    `json:"assingmnet_grade"`
+	UserID             uuid.UUID `json:"user_id"`
+	AssignmentID       uuid.UUID `json:"assignment_id"`
+}
+
 type Course struct {
 	CoursesID         uuid.UUID `json:"courses_id"`
 	CreatedAt         time.Time `json:"created_at"`

@@ -27,3 +27,6 @@ DELETE FROM assignments;
 
 -- name: ResetCourseEnrollment :exec
 DELETE FROM course_enrollment;
+
+-- name: ResetAssignmentGrades :exec
+DELETE FROM assignment_grades;

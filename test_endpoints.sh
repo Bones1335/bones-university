@@ -162,7 +162,14 @@ CREATE_ASSIGNMENT_RJORDAN=$(curl -X POST http://localhost:8080/api/assignments -
 
 echo $CREATE_ASSIGNMENT_RJORDAN | jq .
 
+spinalAssignment=$(echo $CREATE_ASSIGNMENT_RJORDAN | jq -r .assignments_id)
+
 echo "Enroll John Doe in 'Spinal Anatomy course'"
 ENROLL_JDOE_IN_SPINAL_ANATOMY=$(curl -X POST http://localhost:8080/api/course_enrollment -H "Authorization: Bearer $jdToken" -d "{\"course_id\":\"$spinalCourse\"}")
 
 echo $ENROLL_JDOE_IN_SPINAL_ANATOMY | jq .
+
+echo "Create 'anatomy assignment grades' as Robert Jordan"
+CREATE_ASSIGNMENT_GRADES_RJORDAN=$(curl -X POST http://localhost:8080/api/assignment_grades -H "Authorization: Bearer $rjToken" -d "{\"assignment_id\":\"$spinalAssignment\",\"user_id\":\"$jdoeID\"}")
+
+echo $CREATE_ASSIGNMENT_GRADES_RJORDAN | jq .
