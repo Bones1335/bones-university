@@ -30,3 +30,6 @@ DELETE FROM course_enrollment;
 
 -- name: ResetAssignmentGrades :exec
 DELETE FROM assignment_grades;
+
+-- name: ResetInternships :exec
+DELETE FROM internships;

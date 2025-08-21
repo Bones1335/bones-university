@@ -173,3 +173,8 @@ echo "Create 'anatomy assignment grades' as Robert Jordan"
 CREATE_ASSIGNMENT_GRADES_RJORDAN=$(curl -X POST http://localhost:8080/api/assignment_grades -H "Authorization: Bearer $rjToken" -d "{\"assignment_id\":\"$spinalAssignment\",\"user_id\":\"$jdoeID\"}")
 
 echo $CREATE_ASSIGNMENT_GRADES_RJORDAN | jq .
+
+echo "Create 'internship' as John Snow"
+CREATE_INTERNSHIP_JSNOW=$(curl -X POST http://localhost:8080/api/internships -H "Authorization: Bearer $jsToken" -d '{"business_name":"CHU Besançon","num_spots":3,"business_address":"3 rue Alexandre Fleming","business_city":"Besançon","business_postal_code":25000,"business_state":"Doubs","business_country":"France","business_phone_number":"07 12 34 56 78","business_email":"stage@chu-besancon.fr","business_type":"hospital"}')
+
+echo $CREATE_INTERNSHIP_JSNOW | jq .

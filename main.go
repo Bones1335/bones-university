@@ -81,6 +81,7 @@ func main() {
 	mux.HandleFunc("POST /api/assignment_grades", apiCfg.handlerCreateAssignmentGrades)
 
 	// TODO: Internship endpoints
+	mux.HandleFunc("POST /api/internships", apiCfg.handlerCreateInternships)
 
 	// TODO: Internship_User(student) endpoints
 

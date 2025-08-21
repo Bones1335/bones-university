@@ -64,6 +64,20 @@ type DegreesCourse struct {
 	CourseID         uuid.UUID `json:"course_id"`
 }
 
+type Internship struct {
+	InternshipsID       uuid.UUID `json:"internships_id"`
+	BusinessName        string    `json:"business_name"`
+	NumSpots            int16     `json:"num_spots"`
+	BusinessAddress     string    `json:"business_address"`
+	BusinessCity        string    `json:"business_city"`
+	BusinessPostalCode  int32     `json:"business_postal_code"`
+	BusinessState       string    `json:"business_state"`
+	BusinessCountry     string    `json:"business_country"`
+	BusinessPhoneNumber string    `json:"business_phone_number"`
+	BusinessEmail       string    `json:"business_email"`
+	BusinessType        string    `json:"business_type"`
+}
+
 type RefreshToken struct {
 	Token     string       `json:"token"`
 	CreatedAt time.Time    `json:"created_at"`
