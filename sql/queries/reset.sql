@@ -33,3 +33,6 @@ DELETE FROM assignment_grades;
 
 -- name: ResetInternships :exec
 DELETE FROM internships;
+
+-- name: ResetUserInternships :exec
+DELETE FROM user_internships;

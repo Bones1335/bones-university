@@ -83,7 +83,8 @@ func main() {
 	// TODO: Internship endpoints
 	mux.HandleFunc("POST /api/internships", apiCfg.handlerCreateInternships)
 
-	// TODO: Internship_User(student) endpoints
+	// TODO: User_Internships(student) endpoints
+	mux.HandleFunc("POST /api/user_internships_choice", apiCfg.handlerCreateUserInternships)
 
 	srv := &http.Server{
 		Addr:    ":" + port,

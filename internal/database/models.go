@@ -104,6 +104,12 @@ type User struct {
 	Password        string    `json:"password"`
 }
 
+type UserInternship struct {
+	UserInternshipsID uuid.UUID `json:"user_internships_id"`
+	UserID            uuid.UUID `json:"user_id"`
+	InternshipID      uuid.UUID `json:"internship_id"`
+}
+
 type UsersProgram struct {
 	UsersProgramID uuid.UUID `json:"users_program_id"`
 	CohortYear     int32     `json:"cohort_year"`

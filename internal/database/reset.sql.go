@@ -81,6 +81,15 @@ func (q *Queries) ResetRoles(ctx context.Context) error {
 	return err
 }
 
+const resetUserInternships = `-- name: ResetUserInternships :exec
+DELETE FROM user_internships
+`
+
+func (q *Queries) ResetUserInternships(ctx context.Context) error {
+	_, err := q.db.ExecContext(ctx, resetUserInternships)
+	return err
+}
+
 const resetUsers = `-- name: ResetUsers :exec
 DELETE FROM users
 `

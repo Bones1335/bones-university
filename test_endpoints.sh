@@ -178,3 +178,12 @@ echo "Create 'internship' as John Snow"
 CREATE_INTERNSHIP_JSNOW=$(curl -X POST http://localhost:8080/api/internships -H "Authorization: Bearer $jsToken" -d '{"business_name":"CHU Besançon","num_spots":3,"business_address":"3 rue Alexandre Fleming","business_city":"Besançon","business_postal_code":25000,"business_state":"Doubs","business_country":"France","business_phone_number":"07 12 34 56 78","business_email":"stage@chu-besancon.fr","business_type":"hospital"}')
 
 echo $CREATE_INTERNSHIP_JSNOW | jq .
+
+chuID=$(echo $CREATE_INTERNSHIP_JSNOW | jq -r .internships_id)
+
+echo $chuID
+
+echo "Create 'user_internships' as John Doe"
+CREATE_USER_INTERNSHIP_JDOE=$(curl -X POST http://localhost:8080/api/user_internships_choice -H "Authorization: Bearer $jdToken" -d "{\"user_id\":\"$jdoeID\",\"internship_id\":\"$chuID\"}")
+
+echo $CREATE_USER_INTERNSHIP_JDOE | jq .

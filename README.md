@@ -77,11 +77,16 @@ This app is an imitation of a university site like Blackboard, Moodle, and Canva
     - [ ] Table with many assignments per Course
     - [ ] Table with Course ID, Assignment ID, Student ID, and Grade associated to that assignment
 
-  - [ ] CREATE Internships endpoint
+  - [x] CREATE Internships endpoint
     - an internship needs to designate the number of spots they have available
   - [ ] READ Internships endpoint
   - [ ] UPDATE Internships endpoint
   - [ ] DELETE Internships endpoint
+
+  - [x] CREATE User_Internships endpoint
+  - [ ] READ User_Internships endpoint
+  - [ ] UPDATE User_Internships endpoint
+  - [ ] DELETE User_Internships endpoint
 
   - [ ] Connect one internship to many students
 
